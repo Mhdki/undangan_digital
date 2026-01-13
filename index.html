@@ -229,12 +229,14 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            /* Update: Removed Opacity 0 to ensure content is visible immediately behind cover */
-            /* transform: scale(0.95); Removed initial scale for instant impact */
-            /* transition: all 1.5s ease-out; */
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 1.5s ease-out;
         }
-        /* .hero-welcome.active { ... } Removed active logic for instant show */
-        
+        .hero-welcome.active {
+            opacity: 1;
+            transform: scale(1);
+        }
         .hero-img-container {
             width: 100%;
             height: 100%;
@@ -683,9 +685,13 @@
 
         // --- GLOBAL FUNCTIONS ---
         window.openInvitation = function() {
+            // Scroll ke paling atas halaman
+            window.scrollTo(0, 0);
+
             // Animasi Cover Slide Up
             const cover = document.getElementById('cover');
             const mainContent = document.getElementById('main-content');
+            const heroWelcome = document.getElementById('welcome-section'); // Ambil elemen hero
             
             cover.style.transition = "transform 1s cubic-bezier(0.77, 0, 0.175, 1)";
             cover.style.transform = 'translateY(-100%)';
@@ -693,7 +699,12 @@
             // Tampilkan konten utama LANGSUNG tanpa delay berlebihan
             mainContent.style.display = 'block';
             
-            // Jalankan musik
+            // Trigger animasi hero welcome langsung saat tombol ditekan
+            // Menggunakan sedikit delay agar browser merender display:block dulu
+            setTimeout(() => {
+                if(heroWelcome) heroWelcome.classList.add('active'); 
+            }, 50);
+
             window.playMusic();
             
             // Trigger Animations Scroll
