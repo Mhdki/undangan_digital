@@ -221,6 +221,37 @@
         .zoom-in { opacity: 0; transform: scale(0.8); transition: 1s ease; }
         .zoom-in.active { opacity: 1; transform: scale(1); }
 
+        /* --- WELCOME HERO ANIMATION --- */
+        .hero-welcome {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 1.5s ease-out;
+        }
+        .hero-welcome.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .hero-img-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0; left: 0;
+            z-index: -1;
+        }
+        .hero-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+        }
+
         /* --- PRELOADER --- */
         #preloader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -283,7 +314,6 @@
 
     <!-- AUDIO (MINANG INSTRUMENT) -->
     <audio id="bg-music" loop>
-        <!-- Pastikan Anda memiliki file 'instrumen-minang.mp3' di folder yang sama -->
         <source src="instrumen-minang.mp3" type="audio/mp3">
     </audio>
     <div class="music-fab" onclick="toggleMusic()">
@@ -316,7 +346,19 @@
     <!-- MAIN CONTENT WRAPPER -->
     <div id="main-content" style="display: none;">
         
-        <!-- 2. MUKADIMAH -->
+        <!-- 2. WELCOME HERO (Full Screen Couple Photo) -->
+        <section class="hero-welcome" id="welcome-section">
+            <div class="hero-img-container">
+                <!-- Gunakan foto prewed landscape terbaik di sini -->
+                <img src="21.jpg" alt="Rizky & Anisa">
+            </div>
+            <div class="container text-center" style="position: relative; z-index: 2; margin-top: 40vh;">
+                <h2 class="script-font text-gold mb-3" style="font-size: 4rem;">We Are Getting Married</h2>
+                <p class="text-white letter-spacing-2 text-uppercase">Sabtu, 20 Desember 2026</p>
+            </div>
+        </section>
+
+        <!-- 3. MUKADIMAH -->
         <section class="py-5">
             <div class="container text-center">
                 <div class="card-glass reveal">
@@ -335,7 +377,7 @@
             </div>
         </section>
 
-        <!-- 3. MEMPELAI -->
+        <!-- 4. MEMPELAI -->
         <section class="py-5">
             <div class="container">
                 <div class="gonjong-wrapper reveal">
@@ -371,7 +413,7 @@
             </div>
         </section>
 
-        <!-- 4. LOVE STORY TIMELINE -->
+        <!-- 5. LOVE STORY TIMELINE -->
         <section class="py-5">
             <div class="container">
                 <h2 class="text-center text-gold mb-5 reveal">Perjalanan Cinta</h2>
@@ -410,7 +452,7 @@
             </div>
         </section>
 
-        <!-- 5. EVENTS & COUNTDOWN -->
+        <!-- 6. EVENTS & COUNTDOWN -->
         <section class="py-5">
             <div class="container">
                 <div class="card-glass reveal">
@@ -469,7 +511,7 @@
             </div>
         </section>
 
-        <!-- 6. GALLERY -->
+        <!-- 7. GALLERY -->
         <section class="py-5">
             <div class="container text-center">
                 <h2 class="text-gold mb-5 reveal">Momen Bahagia</h2>
@@ -490,7 +532,7 @@
             </div>
         </section>
 
-        <!-- 7. AI PANTUN -->
+        <!-- 8. AI PANTUN -->
         <section class="py-5">
             <div class="container">
                 <div class="card-glass reveal text-center border-warning border-opacity-25">
@@ -517,7 +559,7 @@
             </div>
         </section>
 
-        <!-- 8. GIFT & RSVP -->
+        <!-- 9. GIFT & RSVP -->
         <section class="py-5 pb-5">
             <div class="container">
                 <div class="row g-4">
@@ -641,11 +683,24 @@
 
         // --- GLOBAL FUNCTIONS ---
         window.openInvitation = function() {
-            document.getElementById('cover').style.transform = 'translateY(-100%)';
-            document.getElementById('main-content').style.display = 'block';
+            // Animasi Cover Slide Up
+            const cover = document.getElementById('cover');
+            const mainContent = document.getElementById('main-content');
+            const heroWelcome = document.getElementById('welcome-section');
+            
+            cover.style.transition = "transform 1s cubic-bezier(0.77, 0, 0.175, 1)";
+            cover.style.transform = 'translateY(-100%)';
+            
+            // Tampilkan konten utama dan jalankan animasi Hero
+            mainContent.style.display = 'block';
+            
+            setTimeout(() => {
+                heroWelcome.classList.add('active'); // Trigger zoom/fade effect
+            }, 500);
+
             window.playMusic();
             
-            // Trigger Animations
+            // Trigger Animations Scroll
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) entry.target.classList.add('active');
