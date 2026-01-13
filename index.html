@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Royal Wedding of Rizky & Anisa</title>
+    <title>The Royal Wedding of Ade & Annisa</title>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -229,15 +229,12 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            /* Pastikan opacity awal 1 jika JS telat load, tapi kita mainkan di JS */
-            opacity: 0; 
-            transform: scale(0.95);
-            transition: all 1.5s ease-out;
+            /* Update: Removed Opacity 0 to ensure content is visible immediately behind cover */
+            /* transform: scale(0.95); Removed initial scale for instant impact */
+            /* transition: all 1.5s ease-out; */
         }
-        .hero-welcome.active {
-            opacity: 1;
-            transform: scale(1);
-        }
+        /* .hero-welcome.active { ... } Removed active logic for instant show */
+        
         .hero-img-container {
             width: 100%;
             height: 100%;
@@ -305,7 +302,7 @@
     <!-- PRELOADER -->
     <div id="preloader">
         <div class="loader-ring"></div>
-        <h2 class="mt-4 text-gold" style="font-size: 1.5rem; letter-spacing: 5px;">R & A</h2>
+        <h2 class="mt-4 text-gold" style="font-size: 1.5rem; letter-spacing: 5px;">ADE & ANNISA</h2>
     </div>
 
     <!-- CANVAS PARTICLES (GOLD DUST) -->
@@ -335,7 +332,7 @@
                 <p class="text-uppercase letter-spacing-4 text-light small">The Wedding Of</p>
             </div>
             
-            <h1 class="hero-title text-gold display-1 fw-bold mb-4">Rizky & Anisa</h1>
+            <h1 class="hero-title text-gold display-1 fw-bold mb-4">Ade & Annisa</h1>
             
             <div style="width: 100px; height: 2px; background: var(--gold-main); margin: 0 auto 30px;"></div>
             
@@ -352,9 +349,10 @@
         <section class="hero-welcome" id="welcome-section">
             <div class="hero-img-container">
                 <!-- Menggunakan gambar Unsplash agar pasti tampil -->
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop" alt="Rizky & Anisa">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop" alt="Ade & Annisa">
             </div>
-            <div class="container text-center" style="position: relative; z-index: 2; margin-top: 40vh;">
+            <!-- Margin-top dihapus agar centered -->
+            <div class="container text-center" style="position: relative; z-index: 2;">
                 <h2 class="script-font text-gold mb-3" style="font-size: 4rem;">We Are Getting Married</h2>
                 <p class="text-white letter-spacing-2 text-uppercase">Sabtu, 20 Desember 2026</p>
             </div>
@@ -393,9 +391,9 @@
                         <div class="couple-frame mx-auto mb-4" style="max-width: 300px;">
                             <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80" class="couple-img" alt="Groom">
                         </div>
-                        <h2 class="text-gold mb-1">Rizky Pratama</h2>
+                        <h2 class="text-gold mb-1">Ade Febrianto Saputra</h2>
                         <p class="text-white-50 mb-1">Putra Bpk. Ahmad & Ibu Siti</p>
-                        <a href="#" class="text-gold text-decoration-none small"><i class="fab fa-instagram"></i> @rizky_p</a>
+                        <a href="#" class="text-gold text-decoration-none small"><i class="fab fa-instagram"></i> @ade_f</a>
                     </div>
 
                     <div class="col-md-1 text-center reveal">
@@ -407,9 +405,9 @@
                         <div class="couple-frame mx-auto mb-4" style="max-width: 300px;">
                             <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80" class="couple-img" alt="Bride">
                         </div>
-                        <h2 class="text-gold mb-1">Anisa Maharani</h2>
+                        <h2 class="text-gold mb-1">Annisa Putri</h2>
                         <p class="text-white-50 mb-1">Putri Bpk. Budi & Ibu Rina</p>
-                        <a href="#" class="text-gold text-decoration-none small"><i class="fab fa-instagram"></i> @anisa_m</a>
+                        <a href="#" class="text-gold text-decoration-none small"><i class="fab fa-instagram"></i> @annisa_p</a>
                     </div>
                 </div>
             </div>
@@ -574,7 +572,7 @@
                             <div class="bg-black bg-opacity-50 p-3 rounded border border-secondary d-inline-block mt-2">
                                 <p class="mb-0 text-gold fw-bold">BANK BRI</p>
                                 <h2 class="text-white my-2 letter-spacing-4">1234 5678 9012</h2>
-                                <p class="small mb-2">a.n RIZKY PRATAMA</p>
+                                <p class="small mb-2">a.n ADE FEBRIANTO SAPUTRA</p>
                                 <button onclick="copyText('123456789012')" class="btn btn-sm btn-outline-light"><i class="fas fa-copy me-2"></i>SALIN</button>
                             </div>
                         </div>
@@ -605,7 +603,7 @@
 
         <!-- FOOTER -->
         <footer class="bg-black text-center py-5 border-top border-secondary">
-            <h2 class="script-font mb-3 text-gold">Rizky & Anisa</h2>
+            <h2 class="script-font mb-3 text-gold">Ade & Annisa</h2>
             <p class="text-white small mb-4" style="font-family: var(--font-body); font-weight: 500;">Terima kasih atas doa & restu Bapak/Ibu/Saudara/i.</p>
             <p class="text-muted" style="font-size: 0.7rem; letter-spacing: 2px;">© 2026 THE ROYAL WEDDING</p>
         </footer>
@@ -688,18 +686,14 @@
             // Animasi Cover Slide Up
             const cover = document.getElementById('cover');
             const mainContent = document.getElementById('main-content');
-            const heroWelcome = document.getElementById('welcome-section');
             
             cover.style.transition = "transform 1s cubic-bezier(0.77, 0, 0.175, 1)";
             cover.style.transform = 'translateY(-100%)';
             
-            // Tampilkan konten utama dan jalankan animasi Hero
+            // Tampilkan konten utama LANGSUNG tanpa delay berlebihan
             mainContent.style.display = 'block';
             
-            setTimeout(() => {
-                heroWelcome.classList.add('active'); // Trigger zoom/fade effect
-            }, 500);
-
+            // Jalankan musik
             window.playMusic();
             
             // Trigger Animations Scroll
@@ -775,7 +769,7 @@
 
                 const genAI = new GoogleGenerativeAI(apiKey);
                 const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-preview-09-2025" });
-                const prompt = `Buatkan pantun Minang 4 baris yang santun dan indah untuk pernikahan Rizky & Anisa. Pengirim: ${name}, Ucapan: ${wish}. Sertakan terjemahan.`;
+                const prompt = `Buatkan pantun Minang 4 baris yang santun dan indah untuk pernikahan Ade & Annisa. Pengirim: ${name}, Ucapan: ${wish}. Sertakan terjemahan.`;
                 const result = await model.generateContent(prompt);
                 const response = await result.response;
                 document.getElementById('pantunText').innerText = response.text();
