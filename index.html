@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Royal Wedding of Ade & Annisa</title>
+    <title>The Royal Wedding of Ade & Khanza</title>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,7 +11,7 @@
     <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&family=Great+Vibes&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -30,7 +30,7 @@
             --gold-light: #f9dcc4;
             --gold-main: #d4af37;
             --gold-dark: #aa8c2c;
-            --glass-dark: rgba(20, 20, 20, 0.75);
+            --glass-dark: rgba(20, 20, 20, 0.85);
             --glass-border: 1px solid rgba(212, 175, 55, 0.3);
             
             /* FONTS */
@@ -42,7 +42,7 @@
 
         body {
             font-family: var(--font-body);
-            color: #f0f0f0; /* Default Text White */
+            color: #f0f0f0;
             background-color: var(--bg-dark);
             overflow-x: hidden;
             line-height: 1.8;
@@ -51,8 +51,8 @@
         /* --- BACKGROUND EFFECTS --- */
         .bg-fixed {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            /* Menggunakan gambar Unsplash agar pasti tampil */
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop');
+            /* Menggunakan gambar placeholder berkualitas tinggi */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -64,7 +64,7 @@
             z-index: -1; pointer-events: none;
         }
 
-        /* --- TYPOGRAPHY UPGRADE --- */
+        /* --- TYPOGRAPHY --- */
         h1, h2, h3, h4, h5 { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 2px; }
         
         .text-gold {
@@ -83,7 +83,7 @@
             line-height: 1.2;
         }
 
-        /* --- ADVANCED GLASS CARD --- */
+        /* --- UI COMPONENTS --- */
         .card-glass {
             background: var(--glass-dark);
             backdrop-filter: blur(12px);
@@ -102,14 +102,12 @@
             border-color: rgba(212, 175, 55, 0.6);
         }
 
-        /* Songket Pattern Overlay on Card */
         .card-glass::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-image: radial-gradient(var(--gold-main) 1px, transparent 1px);
             background-size: 30px 30px; opacity: 0.05; pointer-events: none;
         }
 
-        /* --- ORNAMENTS --- */
         .minang-corner {
             position: absolute; width: 60px; height: 60px;
             border: 2px solid var(--gold-main);
@@ -120,31 +118,6 @@
         .card-glass:hover .tl { top: 10px; left: 10px; } 
         .card-glass:hover .br { bottom: 10px; right: 10px; }
 
-        /* --- GONJONG HEADER (Stylized) --- */
-        .gonjong-wrapper {
-            position: relative;
-            height: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            margin-bottom: 40px;
-        }
-        .gonjong-shape {
-            width: 100%; height: 100%;
-            background: linear-gradient(to bottom, var(--maroon-bright), var(--maroon-deep));
-            clip-path: polygon(0% 100%, 5% 20%, 50% 80%, 95% 20%, 100% 100%);
-            position: absolute; bottom: 0;
-            box-shadow: 0 -10px 30px rgba(212, 175, 55, 0.2);
-        }
-        .gonjong-icon {
-            z-index: 2; font-size: 2rem; color: var(--gold-main);
-            background: var(--bg-dark); padding: 10px; border-radius: 50%;
-            border: 2px solid var(--gold-main);
-            transform: translateY(50%);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-        }
-
-        /* --- BUTTONS --- */
         .btn-royal {
             background: transparent;
             color: var(--gold-main);
@@ -157,6 +130,8 @@
             overflow: hidden;
             transition: all 0.4s ease;
             z-index: 1;
+            text-decoration: none;
+            display: inline-block;
         }
         .btn-royal::before {
             content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
@@ -165,35 +140,66 @@
         .btn-royal:hover { color: #000; }
         .btn-royal:hover::before { width: 100%; }
 
-        /* --- INPUTS (Minimalist) --- */
-        .form-control, .form-select {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 0;
-            color: #fff;
-            padding: 15px 5px;
+        /* --- COVER (OPENING) --- */
+        #cover {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+            z-index: 9999; text-align: center; padding-bottom: 100px;
+            transition: transform 1s cubic-bezier(0.86, 0, 0.07, 1);
         }
-        .form-control:focus, .form-select:focus {
-            background: transparent;
-            box-shadow: none;
-            border-color: var(--gold-main);
-            color: #fff;
-        }
-        ::placeholder { color: rgba(255,255,255,0.5); }
-        option { background: #000; color: #fff; }
+        #cover.open { transform: translateY(-100%); }
 
-        /* --- COUPLE IMAGE --- */
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: #fff; margin-bottom: 10px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        /* --- HERO WELCOME (INSIDE) --- */
+        .hero-welcome {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-img-container {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+        }
+        .hero-img-container img {
+            width: 100%; height: 100%; object-fit: cover;
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+        }
+
+        /* --- COUPLE & GONJONG --- */
+        .gonjong-wrapper {
+            position: relative; height: 100px; display: flex;
+            justify-content: center; align-items: flex-end; margin-bottom: 40px;
+        }
+        .gonjong-shape {
+            width: 100%; height: 100%;
+            background: linear-gradient(to bottom, var(--maroon-bright), var(--maroon-deep));
+            clip-path: polygon(0% 100%, 5% 20%, 50% 80%, 95% 20%, 100% 100%);
+            position: absolute; bottom: 0;
+            box-shadow: 0 -10px 30px rgba(212, 175, 55, 0.2);
+        }
+        .gonjong-icon {
+            z-index: 2; font-size: 2rem; color: var(--gold-main);
+            background: var(--bg-dark); padding: 10px; border-radius: 50%;
+            border: 2px solid var(--gold-main); transform: translateY(50%);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
         .couple-frame {
             position: relative; padding: 10px;
-            border: 1px solid var(--gold-main);
-            border-radius: 100px 100px 0 0;
+            border: 1px solid var(--gold-main); border-radius: 100px 100px 0 0;
         }
         .couple-img {
             width: 100%; height: 350px; object-fit: cover;
-            border-radius: 95px 95px 0 0;
-            filter: grayscale(20%);
-            transition: 0.5s;
+            border-radius: 95px 95px 0 0; filter: grayscale(20%); transition: 0.5s;
         }
         .couple-frame:hover .couple-img { filter: grayscale(0%); transform: scale(1.02); }
 
@@ -210,53 +216,27 @@
             z-index: 2; box-shadow: 0 0 15px var(--gold-main);
         }
 
-        /* --- ANIMATIONS (AOS Style) --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
+        /* --- ANIMATIONS --- */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 1.2s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        
         .zoom-in { opacity: 0; transform: scale(0.8); transition: 1s ease; }
         .zoom-in.active { opacity: 1; transform: scale(1); }
 
-        /* --- WELCOME HERO ANIMATION --- */
-        .hero-welcome {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: scale(0.95);
-            transition: all 1.5s ease-out;
+        /* --- INPUTS --- */
+        .form-control, .form-select {
+            background: transparent; border: none; border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0; color: #fff; padding: 15px 5px;
         }
-        .hero-welcome.active {
-            opacity: 1;
-            transform: scale(1);
+        .form-control:focus, .form-select:focus {
+            background: transparent; box-shadow: none; border-color: var(--gold-main); color: #fff;
         }
-        .hero-img-container {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0; left: 0;
-            z-index: -1;
-        }
-        .hero-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* Masking agar smooth transisi ke konten bawah */
-            mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-        }
+        ::placeholder { color: rgba(255,255,255,0.5); }
+        option { background: #000; color: #fff; }
 
         /* --- PRELOADER --- */
         #preloader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 9999;
+            background: #000; z-index: 10000;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             transition: opacity 1s ease;
         }
@@ -278,8 +258,7 @@
             width: 50px; height: 50px; border-radius: 50%;
             background: rgba(0,0,0,0.5); border: 1px solid var(--gold-main);
             color: var(--gold-main); display: flex; justify-content: center; align-items: center;
-            cursor: pointer; backdrop-filter: blur(5px);
-            animation: pulse-gold 2s infinite;
+            cursor: pointer; backdrop-filter: blur(5px); animation: pulse-gold 2s infinite;
         }
         @keyframes pulse-gold { 0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } }
         .spin-vinyl { animation: spin 4s linear infinite; }
@@ -291,11 +270,10 @@
         }
         #lightbox img { max-width: 90vw; max-height: 90vh; border: 2px solid var(--gold-main); box-shadow: 0 0 50px rgba(212,175,55,0.3); }
 
-        /* Responsive Fixes */
         @media (max-width: 768px) {
             .timeline::before { left: 20px; }
             .timeline-node { left: 20px; }
-            .hero-title { font-size: 3rem; }
+            .hero-title { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -304,7 +282,7 @@
     <!-- PRELOADER -->
     <div id="preloader">
         <div class="loader-ring"></div>
-        <h2 class="mt-4 text-gold" style="font-size: 1.5rem; letter-spacing: 5px;">ADE & ANNISA</h2>
+        <h2 class="mt-4 text-gold" style="font-size: 1.5rem; letter-spacing: 5px;">ADE & KHANZA</h2>
     </div>
 
     <!-- CANVAS PARTICLES (GOLD DUST) -->
@@ -326,15 +304,15 @@
         <img id="lightbox-img" src="" alt="Gallery Zoom">
     </div>
 
-    <!-- 1. COVER SECTION -->
-    <section id="cover" class="d-flex flex-column justify-content-center align-items-center vh-100 text-center position-relative" style="z-index: 10;">
+    <!-- 1. COVER SECTION (OPENING) -->
+    <section id="cover">
         <div class="container" data-aos="fade-up">
             <div class="mb-3">
                 <i class="fas fa-crown text-gold fs-2 mb-2"></i>
                 <p class="text-uppercase letter-spacing-4 text-light small">The Wedding Of</p>
             </div>
             
-            <h1 class="hero-title text-gold display-1 fw-bold mb-4">Ade & Annisa</h1>
+            <h1 class="hero-title text-gold display-1 fw-bold mb-4">Ade & Khanza</h1>
             
             <div style="width: 100px; height: 2px; background: var(--gold-main); margin: 0 auto 30px;"></div>
             
@@ -347,13 +325,12 @@
     <!-- MAIN CONTENT WRAPPER -->
     <div id="main-content" style="display: none;">
         
-        <!-- 2. WELCOME HERO (Full Screen Couple Photo) -->
+        <!-- 2. WELCOME HERO (FIRST VIEW AFTER OPEN) -->
         <section class="hero-welcome" id="welcome-section">
             <div class="hero-img-container">
-                <!-- Menggunakan gambar Unsplash agar pasti tampil -->
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop" alt="Ade & Annisa">
+                <!-- Foto Prewed Utama Landscape -->
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop" alt="Ade & Khanza">
             </div>
-            <!-- Margin-top dihapus agar centered -->
             <div class="container text-center" style="position: relative; z-index: 2;">
                 <h2 class="script-font text-gold mb-3" style="font-size: 4rem;">We Are Getting Married</h2>
                 <p class="text-white letter-spacing-2 text-uppercase">Sabtu, 20 Desember 2026</p>
@@ -395,7 +372,7 @@
                         </div>
                         <h2 class="text-gold mb-1">Ade Febrianto Saputra</h2>
                         <p class="text-white-50 mb-1">Putra Bpk. Ahmad & Ibu Siti</p>
-                        <a href="#" class="text-gold text-decoration-none small"><i class="fab fa-instagram"></i> @ade_f</a>
+                        <a href="#" class="text-gold text-decoration-none small"><i class="fab fa-instagram"></i> @ade_febrianto</a>
                     </div>
 
                     <div class="col-md-1 text-center reveal">
@@ -407,9 +384,9 @@
                         <div class="couple-frame mx-auto mb-4" style="max-width: 300px;">
                             <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80" class="couple-img" alt="Bride">
                         </div>
-                        <h2 class="text-gold mb-1">Annisa Putri</h2>
+                        <h2 class="text-gold mb-1">Khanza</h2>
                         <p class="text-white-50 mb-1">Putri Bpk. Budi & Ibu Rina</p>
-                        <a href="#" class="text-gold text-decoration-none small"><i class="fab fa-instagram"></i> @annisa_p</a>
+                        <a href="#" class="text-gold text-decoration-none small"><i class="fab fa-instagram"></i> @khanza</a>
                     </div>
                 </div>
             </div>
@@ -605,7 +582,7 @@
 
         <!-- FOOTER -->
         <footer class="bg-black text-center py-5 border-top border-secondary">
-            <h2 class="script-font mb-3 text-gold">Ade & Annisa</h2>
+            <h2 class="script-font mb-3 text-gold">Ade & Khanza</h2>
             <p class="text-white small mb-4" style="font-family: var(--font-body); font-weight: 500;">Terima kasih atas doa & restu Bapak/Ibu/Saudara/i.</p>
             <p class="text-muted" style="font-size: 0.7rem; letter-spacing: 2px;">© 2026 THE ROYAL WEDDING</p>
         </footer>
@@ -691,7 +668,6 @@
             // Animasi Cover Slide Up
             const cover = document.getElementById('cover');
             const mainContent = document.getElementById('main-content');
-            const heroWelcome = document.getElementById('welcome-section'); // Ambil elemen hero
             
             cover.style.transition = "transform 1s cubic-bezier(0.77, 0, 0.175, 1)";
             cover.style.transform = 'translateY(-100%)';
@@ -699,12 +675,7 @@
             // Tampilkan konten utama LANGSUNG tanpa delay berlebihan
             mainContent.style.display = 'block';
             
-            // Trigger animasi hero welcome langsung saat tombol ditekan
-            // Menggunakan sedikit delay agar browser merender display:block dulu
-            setTimeout(() => {
-                if(heroWelcome) heroWelcome.classList.add('active'); 
-            }, 50);
-
+            // Jalankan musik
             window.playMusic();
             
             // Trigger Animations Scroll
@@ -780,7 +751,7 @@
 
                 const genAI = new GoogleGenerativeAI(apiKey);
                 const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-preview-09-2025" });
-                const prompt = `Buatkan pantun Minang 4 baris yang santun dan indah untuk pernikahan Ade & Annisa. Pengirim: ${name}, Ucapan: ${wish}. Sertakan terjemahan.`;
+                const prompt = `Buatkan pantun Minang 4 baris yang santun dan indah untuk pernikahan Ade & Khanza. Pengirim: ${name}, Ucapan: ${wish}. Sertakan terjemahan.`;
                 const result = await model.generateContent(prompt);
                 const response = await result.response;
                 document.getElementById('pantunText').innerText = response.text();
