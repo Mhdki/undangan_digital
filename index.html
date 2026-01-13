@@ -321,7 +321,7 @@
         <!-- MUKADIMAH -->
         <section class="reveal">
             <div class="container">
-                <img src="1.jpg"style="filter: hue-rotate(5deg) saturate(300%) contrast(0.8); opacity: 0.8;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Bismillah.svg/300px-Bismillah.svg.png" width="250" style="filter: sepia(100%) hue-rotate(5deg) saturate(300%) contrast(0.8); opacity: 0.8;">
                 <br><br>
                 <div class="glass-card">
                     <div class="ornament-corner tl"></div>
@@ -585,7 +585,7 @@
             e.preventDefault();
             const n = document.getElementById('name').value;
             const s = document.getElementById('status').value;
-            window.open(`https://api.whatsapp.com/send?phone=6289502829097&text=Halo, saya ${n}. Konfirmasi kehadiran: ${s}.`, '_blank');
+            window.open(`https://api.whatsapp.com/send?phone=6281234567890&text=Halo, saya ${n}. Konfirmasi kehadiran: ${s}.`, '_blank');
         }
         window.copyText = function(t) { navigator.clipboard.writeText(t); alert("Nomor tersalin!"); }
         window.copyPantun = function() { navigator.clipboard.writeText(document.getElementById('pantunText').innerText); alert("Pantun tersalin!"); }
@@ -602,6 +602,12 @@
             try {
                 // IMPORTANT: In production, do not expose API Key here. Use backend.
                 const apiKey = ""; 
+                
+                // Fallback jika API Key kosong (Simulasi untuk demo agar tidak macet)
+                if (!apiKey) {
+                    throw new Error("API Key kosong");
+                }
+
                 const genAI = new GoogleGenerativeAI(apiKey);
                 const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-preview-09-2025" });
 
@@ -610,18 +616,31 @@
                 const response = await result.response;
                 
                 document.getElementById('pantunText').innerText = response.text();
-                document.getElementById('pantunResult').style.display = 'block';
             } catch (error) {
-                alert("Maaf, layanan AI sedang sibuk.");
-                console.error(error);
+                console.warn("AI Error, using fallback:", error);
+                
+                // Fallback Pantun (Agar fitur tetap terlihat 'jalan' meski tanpa API Key)
+                const fallbackPantun = `
+Maaf Dunsanak, koneksi ka Datuak AI sadang taganggu.
+Iko pantun pangganti untuak ${name}:
+
+Anak daro duduek basandiang,
+Marapulai gagah manawan.
+Doa kami indaklah karing,
+Bahagia ${name} sampaikan kawan.
+
+(Terjemahan: Koneksi AI terputus, ini pantun manual sebagai pengganti)`;
+                
+                document.getElementById('pantunText').innerText = fallbackPantun;
+                
+                if (error.message.includes("API Key")) {
+                    alert("Fitur AI memerlukan API Key. Silakan edit file index.html dan masukkan API Key Google Gemini Anda pada baris kode JavaScript.");
+                }
             } finally {
                 document.getElementById('loadingSpinner').style.display = 'none';
+                document.getElementById('pantunResult').style.display = 'block';
             }
         }
     </script>
 </body>
 </html>
-
-
-
-
