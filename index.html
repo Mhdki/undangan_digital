@@ -12,11 +12,12 @@
 
     <style>
         :root {
-            /* Palet Warna Minang Luxury */
-            --primary-color: #004d40; /* Hijau Zamrud */
-            --secondary-color: #00251a; /* Hijau Hitam */
-            --gold-color: #c5a059;    /* Emas Songket */
-            --bg-color: #fdfbf7;      /* Cream */
+            /* Palet Warna Minang 'Mewah & Sakral' */
+            --primary-color: #004d40; /* Hijau Zamrud Gelap (Khas Pelaminan Minang) */
+            --secondary-color: #00251a; /* Hijau Malam */
+            --gold-color: #d4af37;    /* Emas Murni */
+            --accent-gold: #fdf5e6;   /* Emas Pucat/Cream */
+            --bg-color: #fdfbf7;      /* Latar Belakang Bersih */
             --text-color: #333;       
         }
 
@@ -42,102 +43,89 @@
             color: var(--gold-color);
         }
 
-        /* --- BACKGROUND BODY (Motif Halus) --- */
-        .minang-pattern {
+        /* --- BACKGROUND MOTIF (SONGKET HALUS) --- */
+        .minang-bg-pattern {
             background-image: 
-                linear-gradient(30deg, #c5a059 12%, transparent 12.5%, transparent 87%, #c5a059 87.5%, #c5a059),
-                linear-gradient(150deg, #c5a059 12%, transparent 12.5%, transparent 87%, #c5a059 87.5%, #c5a059),
-                linear-gradient(30deg, #c5a059 12%, transparent 12.5%, transparent 87%, #c5a059 87.5%, #c5a059),
-                linear-gradient(150deg, #c5a059 12%, transparent 12.5%, transparent 87%, #c5a059 87.5%, #c5a059),
-                linear-gradient(60deg, #c5a059 25%, transparent 25.5%, transparent 75%, #c5a059 75%, #c5a059),
-                linear-gradient(60deg, #c5a059 25%, transparent 25.5%, transparent 75%, #c5a059 75%, #c5a059);
-            background-size: 80px 140px;
-            background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
-            opacity: 0.05; /* Sangat tipis */
+                radial-gradient(var(--gold-color) 0.5px, transparent 0.5px),
+                radial-gradient(var(--gold-color) 0.5px, var(--bg-color) 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.1; /* Sangat tipis agar elegan */
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; pointer-events: none;
         }
 
-        /* --- HEADER GONJONG (UPDATE UTAMA: MOTIF SONGKET) --- */
+        /* --- HEADER KHUSUS: GONJONG BERTEKSTUR SONGKET --- */
         .gonjong-header {
             width: 100%; 
-            height: 100px;
-            
-            /* Warna Dasar Hijau Gelap */
+            height: 110px;
             background-color: var(--primary-color);
             
-            /* MOTIF SONGKET GEOMETRIS (CSS) */
+            /* TEKSTUR SONGKET (CSS GRADIENT) */
             background-image: 
-                /* Garis Benang Emas Menyilang */
-                repeating-linear-gradient(45deg, rgba(197, 160, 89, 0.2) 0px, rgba(197, 160, 89, 0.2) 2px, transparent 2px, transparent 12px),
-                repeating-linear-gradient(-45deg, rgba(197, 160, 89, 0.2) 0px, rgba(197, 160, 89, 0.2) 2px, transparent 2px, transparent 12px),
-                /* Bayangan Gradasi agar terlihat 3D (Cembung) */
-                linear-gradient(to bottom, transparent 0%, rgba(0,37,26,0.8) 100%);
-
-            /* Bentuk Atap Rumah Gadang */
-            clip-path: polygon(0% 100%, 5% 0%, 50% 80%, 95% 0%, 100% 100%);
+                repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.15) 0px, rgba(212, 175, 55, 0.15) 1px, transparent 1px, transparent 10px),
+                repeating-linear-gradient(-45deg, rgba(212, 175, 55, 0.15) 0px, rgba(212, 175, 55, 0.15) 1px, transparent 1px, transparent 10px);
             
-            margin-bottom: 40px; 
+            /* BENTUK ATAP RUMAH GADANG */
+            clip-path: polygon(0% 100%, 5% 10%, 50% 85%, 95% 10%, 100% 100%);
+            
+            margin-bottom: 50px; 
             position: relative;
-            z-index: 10;
+            box-shadow: inset 0 -10px 20px rgba(0,0,0,0.3);
         }
-        
-        /* List emas di bawah atap */
+        /* List Emas di Bawah Gonjong */
         .gonjong-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gold-color);
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px;
+            background: linear-gradient(to right, var(--gold-color), #f7e49a, var(--gold-color));
         }
 
-        /* --- ORNAMEN PEMBATAS --- */
+        /* --- ORNAMEN PEMBATAS (PUCUAK RABUANG) --- */
         .minang-divider {
             display: flex; align-items: center; justify-content: center;
             gap: 15px; margin: 30px 0; color: var(--gold-color);
         }
         .minang-divider::before, .minang-divider::after {
-            content: ''; height: 1px; width: 50px; background: var(--gold-color);
+            content: ''; height: 2px; width: 50px; background: var(--gold-color);
         }
-        .pucuak-icon { font-size: 1.2rem; }
+        .ornament-icon { font-size: 1.5rem; transform: rotate(-45deg); } /* Rotasi agar mirip pucuak rebung */
 
         /* --- COVER --- */
         #cover {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            /* FOTO COVER */
-            background: linear-gradient(to bottom, rgba(0,77,64,0.6), rgba(0,37,26,0.9)), url('https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            /* Gambar Cover: Ganti dengan foto prewed landscape */
+            background: linear-gradient(to bottom, rgba(0,77,64,0.7), rgba(0,37,26,0.9)), url('https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
             z-index: 9999; color: white; text-align: center; padding-bottom: 100px;
-            transition: transform 1s cubic-bezier(0.86, 0, 0.07, 1);
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
         }
         #cover.open { transform: translateY(-100%); }
         
         .btn-buka {
-            padding: 12px 35px; margin-top: 20px;
-            background: rgba(0,0,0,0.6); color: var(--gold-color);
+            padding: 15px 40px; margin-top: 25px;
+            background: rgba(0, 0, 0, 0.5); 
+            color: var(--gold-color);
             border: 2px solid var(--gold-color); border-radius: 50px;
-            font-size: 1rem; cursor: pointer;
-            box-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
-            transition: 0.4s; font-family: 'Cinzel Decorative'; display: inline-flex; align-items: center; gap: 10px;
+            font-size: 1.1rem; cursor: pointer;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+            transition: 0.4s; font-family: 'Cinzel Decorative', serif; 
+            display: inline-flex; align-items: center; gap: 10px;
+            backdrop-filter: blur(5px);
         }
-        .btn-buka:hover { background: var(--gold-color); color: var(--secondary-color); }
+        .btn-buka:hover { background: var(--gold-color); color: var(--secondary-color); transform: translateY(-3px); }
 
-        /* --- SECTION & COMPONENTS --- */
+        /* --- KONTEN & GRID --- */
         section { padding: 60px 20px; text-align: center; }
-        .container { max-width: 800px; margin: 0 auto; }
+        .container { max-width: 900px; margin: 0 auto; }
 
-        /* Couple */
+        /* Pasangan */
         .couple-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 20px; align-items: center; }
-        .couple-card { position: relative; }
         .couple-card img {
             width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
-            border: 5px solid var(--gold-color); padding: 4px; background: white;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 4px solid var(--gold-color); padding: 5px; background: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
-        
-        /* Galeri */
+
+        /* Galeri Grid */
         .gallery-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px; margin-top: 20px;
@@ -149,6 +137,56 @@
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .gallery-item:hover img { transform: scale(1.1); }
 
+        /* Event Card (Minang Style) */
+        .event-card {
+            background: white; border-radius: 12px; padding: 40px 20px; margin: 25px 0;
+            border: 1px solid rgba(212, 175, 55, 0.3); border-top: 6px solid var(--primary-color);
+            box-shadow: 0 15px 35px rgba(0,77,64,0.08); position: relative; overflow: hidden;
+        }
+        /* Hiasan Sudut Ukiran */
+        .event-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 80px; height: 80px;
+            background: linear-gradient(135deg, var(--gold-color) 0%, transparent 60%); opacity: 0.4;
+        }
+
+        /* Countdown */
+        .timer { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
+        .timer-box { 
+            background: var(--primary-color); color: var(--gold-color);
+            padding: 10px 20px; border-radius: 8px; min-width: 70px; border: 1px solid var(--gold-color);
+        }
+        .timer-box span { font-size: 1.8rem; font-weight: bold; display: block; font-family: 'Cinzel Decorative'; }
+
+        /* Form & Bank */
+        .bank-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white; padding: 25px; border-radius: 15px;
+            border: 2px solid var(--gold-color); max-width: 450px; margin: 0 auto 20px;
+        }
+        .copy-btn {
+            background: rgba(255,255,255,0.1); border: 1px solid var(--gold-color); color: var(--gold-color);
+            padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; margin-left: 10px;
+        }
+        input, select, textarea { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; background: #fff; }
+        .btn-submit { width: 100%; padding: 15px; background: var(--primary-color); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; border: 1px solid var(--gold-color); }
+        .btn-submit:hover { background: var(--gold-color); color: var(--primary-color); }
+
+        /* Utility */
+        .music-control {
+            position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px;
+            background: var(--gold-color); color: var(--primary-color);
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 2000; cursor: pointer;
+            visibility: hidden; opacity: 0; transition: 0.5s; font-size: 1.2rem;
+            border: 2px solid white;
+        }
+        .music-control.show { visibility: visible; opacity: 1; }
+        .spin { animation: spin 4s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        
+        .reveal { opacity: 0; transform: translateY(50px); transition: 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
         /* Lightbox */
         #lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -156,117 +194,82 @@
             display: none; justify-content: center; align-items: center;
         }
         #lightbox.active { display: flex; }
-        #lightbox img { max-width: 90%; max-height: 85vh; border: 2px solid var(--gold-color); }
-        #lightbox-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 30px; cursor: pointer; }
+        #lightbox img { max-width: 90%; max-height: 85vh; border: 3px solid var(--gold-color); }
+        #lightbox-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 35px; cursor: pointer; }
 
-        /* Event & Timer */
-        .event-card {
-            background: white; border-radius: 12px; padding: 40px 20px; margin: 25px 0;
-            border: 1px solid rgba(197, 160, 89, 0.3); border-top: 5px solid var(--primary-color);
-            box-shadow: 0 10px 30px rgba(0,77,64,0.08); position: relative; overflow: hidden;
-        }
-        .event-card::before { /* Hiasan Sudut */
-            content: ''; position: absolute; top: 0; left: 0; width: 60px; height: 60px;
-            background: linear-gradient(135deg, var(--gold-color) 0%, transparent 50%); opacity: 0.5;
-        }
-        .timer { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
-        .timer-box { 
-            background: var(--primary-color); color: var(--gold-color);
-            padding: 10px 15px; border-radius: 5px; min-width: 70px;
-        }
-        .timer-box span { font-size: 1.5rem; font-weight: bold; display: block; }
-
-        /* Gift & Form */
-        .bank-card {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white; padding: 25px; border-radius: 15px;
-            border: 1px solid var(--gold-color); max-width: 400px; margin: 0 auto 20px;
-        }
-        .chip { width: 40px; height: 30px; background: linear-gradient(45deg, #ffd700, #b8860b); border-radius: 5px; margin-bottom: 15px; }
-        .copy-btn {
-            background: transparent; border: 1px solid var(--gold-color); color: var(--gold-color);
-            padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; margin-left: 10px;
-        }
-        .copy-btn:hover { background: var(--gold-color); color: var(--primary-color); }
-        input, select, textarea { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px; }
-        .btn-submit { width: 100%; padding: 12px; background: var(--primary-color); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
-
-        /* Music & Anim */
-        .music-control {
-            position: fixed; bottom: 25px; right: 25px; width: 50px; height: 50px;
-            background: var(--gold-color); color: var(--primary-color);
-            border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 2000; cursor: pointer;
-            visibility: hidden; opacity: 0; transition: 0.5s;
-        }
-        .music-control.show { visibility: visible; opacity: 1; }
-        .spin { animation: spin 4s linear infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        .reveal { opacity: 0; transform: translateY(50px); transition: 0.8s ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
     <audio id="bg-music" loop>
-        <source src="lagu.mp3" type="audio/mp3">
+        <source src="anugerah-terindah.mp3" type="audio/mp3">
     </audio>
 
     <div class="music-control" onclick="toggleMusic()">
         <i class="fas fa-compact-disc spin"></i>
     </div>
 
-    <div class="minang-pattern"></div>
+    <div class="minang-bg-pattern"></div>
 
     <div id="lightbox" onclick="closeLightbox()">
         <span id="lightbox-close">&times;</span>
-        <img id="lightbox-img" src="" alt="Prewedding">
+        <img id="lightbox-img" src="" alt="Zoom">
     </div>
 
     <div id="cover">
         <div class="container">
-            <h3 style="letter-spacing: 4px; color: var(--gold-color);">THE WEDDING OF</h3>
-            <h1 style="font-size: 3.5rem; margin: 10px 0;">Rizky & Anisa</h1>
-            <div class="minang-divider"><i class="fas fa-leaf pucuak-icon"></i></div>
-            <p style="margin-bottom: 30px; font-style: italic;">"Kuingin kau jadi milikku..."</p>
+            <h3 style="letter-spacing: 5px; color: var(--gold-color); font-size: 1rem;">THE WEDDING OF</h3>
+            <h1 style="font-size: 3.5rem; margin: 15px 0;">Rizky & Anisa</h1>
+            
+            <div class="minang-divider">
+                <i class="fas fa-leaf ornament-icon"></i>
+            </div>
+            
+            <p style="margin-bottom: 30px; font-style: italic; font-size: 1.1rem; max-width: 600px;">
+                "Kaulah anugerah terindah, yang pernah ku miliki..."
+            </p>
+            
             <button class="btn-buka" onclick="openInvitation()">
-                <i class="fas fa-envelope-open-text"></i> Buka Undangan
+                <i class="fas fa-book-open"></i> Buka Undangan
             </button>
         </div>
     </div>
 
     <section class="reveal">
         <div class="container">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Bismillah.svg/300px-Bismillah.svg.png" width="180" style="margin-bottom: 25px; opacity: 0.8;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Bismillah.svg/300px-Bismillah.svg.png" width="200" style="margin-bottom: 25px; opacity: 0.8; filter: sepia(100%) hue-rotate(50deg) saturate(500%);">
             <p><i>Assalamu’alaikum Warahmatullahi Wabarakatuh</i></p>
             <br>
-            <div style="border-left: 3px solid var(--gold-color); border-right: 3px solid var(--gold-color); padding: 20px;">
+            <div style="border-left: 3px solid var(--gold-color); border-right: 3px solid var(--gold-color); padding: 25px; background: rgba(255,255,255,0.8);">
                 <p style="font-style: italic; color: var(--primary-color);">
-                    "Anak ikan dimakan ikan,<br>Ikan dimakan di dalam kuali.<br>
-                    Bukan harta yang kami nantikan,<br>Kehadiran Tuan yang kami nanti."
+                    "Bairiang balam jo barabah,<br>
+                    Barabah tabang ka subarang.<br>
+                    Bairiang salam jo sambah,<br>
+                    Kami manyambuik dunsanak nan datang."
                 </p>
             </div>
         </div>
     </section>
 
     <section class="reveal" style="padding-top: 0;">
-        
         <div class="gonjong-header"></div>
         
-        <div class="container" style="margin-top: -30px;">
+        <div class="container" style="margin-top: -60px; position: relative; z-index: 2;">
             <div class="couple-container">
                 <div class="couple-card">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&q=80" alt="Groom">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80" alt="Groom">
                     <h2>Rizky Pratama</h2>
                     <p>Putra Bpk. Ahmad & Ibu Siti</p>
-                    <a href="#" style="color: var(--primary-color); font-weight:bold;"><i class="fab fa-instagram"></i> @rizky_p</a>
+                    <a href="#" style="color: var(--primary-color); font-weight:bold; text-decoration: none;"><i class="fab fa-instagram"></i> @rizky_p</a>
                 </div>
+                
                 <div class="script-font" style="font-size: 4rem; margin: 0 20px;">&</div>
+                
                 <div class="couple-card">
                     <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&q=80" alt="Bride">
                     <h2>Anisa Maharani</h2>
                     <p>Putri Bpk. Budi & Ibu Rina</p>
-                    <a href="#" style="color: var(--primary-color); font-weight:bold;"><i class="fab fa-instagram"></i> @anisa_m</a>
+                    <a href="#" style="color: var(--primary-color); font-weight:bold; text-decoration: none;"><i class="fab fa-instagram"></i> @anisa_m</a>
                 </div>
             </div>
         </div>
@@ -275,11 +278,14 @@
     <section class="reveal">
         <div class="container">
             <h2>Galeri Bahagia</h2>
-            <div class="minang-divider"><i class="fas fa-camera pucuak-icon"></i></div>
+            <div class="minang-divider"><i class="fas fa-camera ornament-icon"></i></div>
+            <p>Momen kebersamaan kami menuju hari bahagia.</p>
+            
             <div class="gallery-grid">
                 <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?w=600&q=80"></div>
                 <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80"></div>
                 <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1520854221250-858f273b4c97?w=600&q=80"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&q=80"></div>
             </div>
         </div>
     </section>
@@ -287,21 +293,26 @@
     <section class="reveal" style="background: white;">
         <div class="container">
             <h2>Rangkaian Acara</h2>
-            <div class="minang-divider"><i class="far fa-calendar-alt pucuak-icon"></i></div>
+            <div class="minang-divider"><i class="far fa-calendar-alt ornament-icon"></i></div>
+            
             <div class="event-card">
                 <h3>Akad Nikah</h3>
                 <p class="script-font">Sabtu, 20 Des 2025</p>
-                <p>08.00 WIB - Selesai</p>
+                <p><i class="far fa-clock"></i> 08.00 WIB - Selesai</p>
                 <p style="font-weight:bold;">Masjid Raya Sumatera Barat</p>
-                <br><a href="#" class="copy-btn" style="text-decoration:none;">Lihat Lokasi</a>
+                <br>
+                <a href="#" class="copy-btn" style="text-decoration:none; color: var(--gold-color); border-color: var(--gold-color); background: var(--primary-color);">Lihat Peta Lokasi</a>
             </div>
+
             <div class="event-card">
                 <h3>Resepsi Adat</h3>
                 <p class="script-font">Minggu, 21 Des 2025</p>
-                <p>11.00 WIB - Selesai</p>
+                <p><i class="far fa-clock"></i> 11.00 WIB - Selesai</p>
                 <p style="font-weight:bold;">UPI Convention Center, Padang</p>
-                <br><a href="#" class="copy-btn" style="text-decoration:none;">Lihat Lokasi</a>
+                <br>
+                <a href="#" class="copy-btn" style="text-decoration:none; color: var(--gold-color); border-color: var(--gold-color); background: var(--primary-color);">Lihat Peta Lokasi</a>
             </div>
+
             <div class="timer" id="countdown">
                 <div class="timer-box"><span id="days">00</span><small>Hari</small></div>
                 <div class="timer-box"><span id="hours">00</span><small>Jam</small></div>
@@ -313,9 +324,9 @@
 
     <section class="reveal">
         <div class="container">
-            <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 40px;">
+            <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 50px;">
                 <h2>Konfirmasi Kehadiran</h2>
-                <div class="minang-divider"><i class="fas fa-envelope pucuak-icon"></i></div>
+                <div class="minang-divider"><i class="fas fa-envelope-open ornament-icon"></i></div>
                 <form onsubmit="sendToWhatsapp(event)">
                     <input type="text" id="name" placeholder="Nama Lengkap" required>
                     <select id="status" required>
@@ -323,64 +334,87 @@
                         <option value="Tidak">Maaf, Tidak Bisa Hadir</option>
                     </select>
                     <input type="number" id="pax" placeholder="Jumlah Tamu" min="1" max="5">
-                    <button type="submit" class="btn-submit"><i class="fab fa-whatsapp"></i> Konfirmasi via WA</button>
+                    <button type="submit" class="btn-submit"><i class="fab fa-whatsapp"></i> Konfirmasi via WhatsApp</button>
                 </form>
             </div>
 
             <h2>Tanda Kasih</h2>
-            <div class="minang-divider"><i class="fas fa-gift pucuak-icon"></i></div>
+            <div class="minang-divider"><i class="fas fa-gift ornament-icon"></i></div>
+            
             <div class="bank-card">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <span style="font-weight: bold; font-size: 1.2rem;">BANK BRI</span>
                     <i class="fas fa-university fa-2x"></i>
                 </div>
                 <br>
-                <div class="chip"></div>
-                <p style="font-size: 1.5rem; letter-spacing: 2px; font-family: 'Cinzel Decorative';">1234 5678 9012</p>
-                <p style="margin: 10px 0;">a.n RIZKY PRATAMA</p>
-                <button class="copy-btn" onclick="copyText('123456789012')"><i class="far fa-copy"></i> Salin</button>
+                <div style="width: 45px; height: 35px; background: linear-gradient(45deg, #ffd700, #b8860b); border-radius: 5px; margin-bottom: 15px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:50%; width:100%; height:1px; background:#333;"></div>
+                </div>
+                <p style="font-size: 1.5rem; letter-spacing: 2px; font-family: 'Cinzel Decorative'; margin-bottom: 5px;">1234 5678 9012</p>
+                <p style="margin-bottom: 15px;">a.n RIZKY PRATAMA</p>
+                <button class="copy-btn" onclick="copyText('123456789012')"><i class="far fa-copy"></i> Salin No. Rekening</button>
             </div>
         </div>
     </section>
 
-    <footer>
-        <h2 class="script-font">Rizky & Anisa</h2>
-        <p>Terima kasih atas doa & restu Anda.</p>
-        <br><small>© 2025 Minang Luxury Wedding</small>
+    <footer style="background: var(--primary-color); padding: 40px 20px; color: var(--gold-color);">
+        <h2 class="script-font" style="margin-bottom: 10px;">Rizky & Anisa</h2>
+        <div style="opacity: 0.7; font-size: 0.9rem;">
+            <p>Terima kasih atas doa & restu Anda.</p>
+            <br>
+            <small>© 2025 Minang Luxury Wedding</small>
+        </div>
     </footer>
 
     <script>
+        // 1. ANIMASI BUKA UNDANGAN & PLAY MUSIK
         function openInvitation() {
             document.getElementById('cover').classList.add('open');
             document.querySelector('.music-control').classList.add('show');
             playMusic();
-            checkReveal();
+            checkReveal(); // Trigger animasi scroll awal
         }
         
+        // 2. LOGIKA MUSIK
         const audio = document.getElementById('bg-music');
         const icon = document.querySelector('.music-control i');
         let isPlaying = false;
 
         function playMusic() {
-            audio.play().then(() => { isPlaying = true; }).catch(e => console.log("Audio block", e));
+            audio.play().then(() => { isPlaying = true; }).catch(e => console.log("Browser memblokir autoplay", e));
         }
+
         function toggleMusic() {
-            if (isPlaying) { audio.pause(); icon.classList.remove('spin'); } 
-            else { audio.play(); icon.classList.add('spin'); }
+            if (isPlaying) {
+                audio.pause();
+                icon.classList.remove('spin');
+            } else {
+                audio.play();
+                icon.classList.add('spin');
+            }
             isPlaying = !isPlaying;
         }
 
+        // 3. LIGHTBOX (ZOOM GAMBAR)
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
-        function openLightbox(el) { lightboxImg.src = el.querySelector('img').src; lightbox.classList.add('active'); }
+
+        function openLightbox(el) {
+            lightboxImg.src = el.querySelector('img').src;
+            lightbox.classList.add('active');
+        }
         function closeLightbox() { lightbox.classList.remove('active'); }
 
+        // 4. ANIMASI SCROLL (REVEAL)
         window.addEventListener('scroll', checkReveal);
         function checkReveal() {
             const reveals = document.querySelectorAll('.reveal');
-            reveals.forEach(r => { if(r.getBoundingClientRect().top < window.innerHeight * 0.85) r.classList.add('active'); });
+            reveals.forEach(r => {
+                if(r.getBoundingClientRect().top < window.innerHeight * 0.85) r.classList.add('active');
+            });
         }
 
+        // 5. COUNTDOWN TIMER
         const weddingDate = new Date("2025-12-20T08:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
@@ -393,15 +427,21 @@
             }
         }, 1000);
 
+        // 6. WHATSAPP & COPY TEXT
         function sendToWhatsapp(e) {
             e.preventDefault();
             const name = document.getElementById('name').value;
             const status = document.getElementById('status').value;
             const pax = document.getElementById('pax').value;
-            window.open(`https://api.whatsapp.com/send?phone=6281234567890&text=Halo, saya ${name}. Konfirmasi: ${status}, ${pax} orang.`, '_blank');
+            // Ganti nomor HP di bawah ini
+            const url = `https://api.whatsapp.com/send?phone=6281234567890&text=Halo, saya ${name}. Konfirmasi kehadiran: ${status}, jumlah tamu ${pax} orang.`;
+            window.open(url, '_blank');
         }
 
-        function copyText(txt) { navigator.clipboard.writeText(txt); alert("No Rekening Berhasil Disalin"); }
+        function copyText(txt) {
+            navigator.clipboard.writeText(txt);
+            alert("Nomor Rekening Berhasil Disalin");
+        }
     </script>
 </body>
 </html>
